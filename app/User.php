@@ -29,7 +29,7 @@ class User extends Authenticatable
 		];
 		
 
-		public function questions(){
+		public function question(){
 			return $this->hasMany(Question::class);
 		}
 }
