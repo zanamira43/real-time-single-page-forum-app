@@ -2,9 +2,9 @@
 	<div>
 		<toolbar></toolbar>
 
-		 <v-container>
-			 <h1>hello</h1>
-		</v-container>
+		 
+			 <router-view></router-view>
+		
 
 		<app-footer></app-footer>
 	</div>
