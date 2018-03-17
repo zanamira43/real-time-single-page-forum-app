@@ -5,16 +5,21 @@ class User {
 
     login(data) {
         axios.post('/api/auth/login', data)
-            .then(res => this.responseAferLogin(res))
+            .then(res => {
+
+                this.responseAfterLogin(res)
+                this.$router.push({ name: 'forum' })
+            })
             .catch(error => console.log(error))
     }
 
-    responseAferLogin(res) {
+    responseAfterLogin(res) {
         const access_token = res.data.access_token
         const username = res.data.user
 
         if (Token.isValid(access_token)) {
             AppStorage.store(access_token, username)
+            window.location = '/forum'
         }
     }
 
@@ -32,6 +37,8 @@ class User {
 
     logout() {
         return AppStorage.clear()
+        window.location = '/forum'
+
     }
 
     name() {

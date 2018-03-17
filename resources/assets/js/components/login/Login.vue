@@ -16,6 +16,7 @@
 			></v-text-field>
 
 			<v-btn type="submit" class="green white--text">Login</v-btn>
+			<v-btn to="/signup" class="blue white--text">Sing up</v-btn>
 		</v-form>
 	</v-container>
  
@@ -30,6 +31,11 @@ export default {
 				email: null,
 				password: null
 			}
+		}
+	},
+	created() {
+		if(User.loginedIn()){
+			this.$router.push({name: 'forum'})
 		}
 	},
 	methods: {
