@@ -9,16 +9,24 @@ use App\Model\Reply;
 
 class Question extends Model
 {
-		// protected $fillable = ['title', 'slug', 'body', 'category_id', 'user_id'];
+	protected $fillable = ['title', 'slug', 'body', 'category_id', 'user_id'];
 
-		
+	// protected $guarded = [];
 
 		// get detail question by using slug instead Id
 		public function getRouteKeyName(){
 			return 'slug';
 		} 
 		
-		protected $guarded = [];
+		
+
+		protected static function boot()
+    {
+        parent::boot();
+        static::creating(function($question) {
+            $question->slug = str_slug($question->title);
+        });
+    }
 
    public function user(){
 		 return $this->belongsTo(User::class);
@@ -35,6 +43,6 @@ class Question extends Model
 
 	 // getting pasth in resource transform
 	 public function getPathAttribute(){
-		 return asset("api/question/$this->slug");
+		 return "/question/$this->slug";
 	 }
 }
