@@ -22,7 +22,7 @@ export default {
 			items: [
 				{title: 'Forum', to:'/forum', show: true},
 				{title: 'Ask Question', to:'/ask', show: User.loginedIn()},
-				{title: 'Category', to:'/category', show: User.loginedIn()},
+				{title: 'Category', to:'/category', show: User.admin()},
 				{title: 'Login', to:'/login', show: !User.loginedIn()},
 				{title: 'Logout', to:'/logout', show: User.loginedIn()}
 			]

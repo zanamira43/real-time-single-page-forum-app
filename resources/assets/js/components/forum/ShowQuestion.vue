@@ -8,9 +8,9 @@
 					</div>
 
 					<v-spacer></v-spacer>
-					<v-btn class="teal white--text">5 Replies</v-btn>
+					<v-btn class="teal" dark>{{data.reply_count}} Replies</v-btn>
 				</v-card-title>
-				<v-card-text v-html="data.body"></v-card-text>	
+				<v-card-text v-html="body"></v-card-text>	
 
 				<v-card-actions v-if="own">
 					<v-btn icon @click="edit">

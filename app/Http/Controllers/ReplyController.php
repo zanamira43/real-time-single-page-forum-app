@@ -3,11 +3,12 @@
 namespace App\Http\Controllers;
 
 use \Symfony\Component\HttpFoundation\Response;
-use App\Model\Reply;
 use Illuminate\Http\Request;
 use App\Http\Resources\ReplyResource;
 
+use App\Model\Reply;
 use App\Model\Question;
+
 
 class ReplyController extends Controller
 {
@@ -23,7 +24,7 @@ class ReplyController extends Controller
      */
     public function index(Question $question)
     {
-        return ReplyResource::collection($question->replies()->latest()->get());
+        return ReplyResource::collection($question->replies);
     }
 
   
@@ -37,7 +38,7 @@ class ReplyController extends Controller
     public function store(Question $question, Request $request)
     {
 				$reply = $question->replies()->create($request->all());
-				return response(['reply' => new ReplyResource($reply)], Response::HTTP_CREATED);
+				return response(new ReplyResource($reply), Response::HTTP_CREATED);
     }
 
     /**
